@@ -18,3 +18,12 @@ I developed a vulnerable gRPC-Web application with the following vulnerabilities
 - Information Disclosure
 - SSRF
 - Integer Overflow
+
+
+
+-----------------------------------------------------------------
+->Dockerfile and docker-compose.yml are placed in respective place.
+
+->Go to grpc-web-playground/5_gRPC-web/client/dist/main.js
+->search for localhost in main.js and change the localhost to public ip
+->then build and run it
