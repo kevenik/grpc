@@ -21,20 +21,10 @@ builder.WebHost.ConfigureKestrel(options =>
     options.Listen(IPAddress.Any, 5000, o => o.Protocols = HttpProtocols.Http1AndHttp2);
 });
 
-builder.Logging.AddConsole(); // Enable console logging
-
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseCors("AllowAll"); // Ensure CORS is applied first
-app.UseExceptionHandler(errorApp => // Add error handling
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        context.Response.ContentType = "application/json";
-        await context.Response.WriteAsync("An unexpected error occurred.");
-    });
-});
+
 
 app.MapGrpcService<GreeterService>();
 app.MapGrpcReflectionService();
